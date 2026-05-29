@@ -86,16 +86,24 @@ sequenceDiagram
     participant Res as search_response.txt
 
     Main->>Req: Write search request
+
     loop Microservice checks request folder
         MS->>Req: readSearchRequest()
     end
+
     MS->>MS: findClosestMatch()
+
     alt Match found
         MS->>Res: writeMatchResponse()
     else No match found
         MS->>Res: writeNoMatchResponse()
     end
+
     loop Program checks response folder
-        Main->>Res: Read search response
+        Main->>Res: Check for search response
     end
+
+    Res-->>Main: Return search response data
+
+    Main->>Main: Process response
 ```
