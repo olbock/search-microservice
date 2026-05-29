@@ -86,7 +86,6 @@ sequenceDiagram
     participant Res as search_response.txt
 
     Main->>Req: Write search request
-<<<<<<< HEAD
 
     loop Microservice checks request folder
         MS->>Req: readSearchRequest()
@@ -94,18 +93,11 @@ sequenceDiagram
 
     MS->>MS: findClosestMatch()
 
-=======
-    loop Microservice checks request folder
-        MS->>Req: readSearchRequest()
-    end
-    MS->>MS: findClosestMatch()
->>>>>>> 8747debf7c20b3822bd7873ed767ac7393cf5cda
     alt Match found
         MS->>Res: writeMatchResponse()
     else No match found
         MS->>Res: writeNoMatchResponse()
     end
-<<<<<<< HEAD
 
     loop Program checks response folder
         Main->>Res: Check for search response
@@ -114,9 +106,4 @@ sequenceDiagram
     Res-->>Main: Return search response data
 
     Main->>Main: Process response
-=======
-    loop Program checks response folder
-        Main->>Res: Read search response
-    end
->>>>>>> 8747debf7c20b3822bd7873ed767ac7393cf5cda
 ```
