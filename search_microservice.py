@@ -33,7 +33,7 @@ def parse_request(text: str) -> dict[str, str]:
     return request_data
 
 
-def similarity(first: str, second: str) -> float:
+def get_similarity_score(first: str, second: str) -> float:
     """Return a similarity score between 0 and 1."""
     return SequenceMatcher(None, first.lower(), second.lower()).ratio()
 
@@ -47,7 +47,7 @@ def find_closest_match(query, category):
     if not possible_items:
         return False, "No Match Found", 0.0
 
-    best_item = max(possible_items, key=lambda item: similarity(query, item["name"]))
+    best_item = max(possible_items, key=lambda item: get_similarity_score(query, item["name"]))
     score = similarity(query, best_item["name"])
 
     # This threshold prevents a random weak match from being returned.
