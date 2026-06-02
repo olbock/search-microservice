@@ -48,7 +48,7 @@ def find_closest_match(query, category):
         return False, "No Match Found", 0.0
 
     best_item = max(possible_items, key=lambda item: get_similarity_score(query, item["name"]))
-    score = similarity(query, best_item["name"])
+    score = get_similarity_score(query, best_item["name"])
 
     # This threshold prevents a random weak match from being returned.
     if score < 0.35:
